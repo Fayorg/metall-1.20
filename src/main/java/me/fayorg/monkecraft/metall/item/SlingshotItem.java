@@ -37,8 +37,6 @@ public class SlingshotItem extends Item {
 
         int timeUsed = getUseDuration(pStack) - pTimeLeft;
 
-        player.sendSystemMessage(Component.literal("Time used: " + timeUsed));
-
         // using a linear function to calculate the charge
         // float charge = timeUsed * 0.5f;
 
