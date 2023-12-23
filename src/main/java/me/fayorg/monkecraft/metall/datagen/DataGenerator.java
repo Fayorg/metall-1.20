@@ -12,6 +12,7 @@ public class DataGenerator {
         ExistingFileHelper efh = event.getExistingFileHelper();
 
         gen.addProvider(event.includeClient(), new MetallItemModels(event.getGenerator().getPackOutput(), Metall.MODID, efh));
+        gen.addProvider(event.includeServer(), new MetallRecipes(event.getGenerator().getPackOutput()));
 
     }
 
