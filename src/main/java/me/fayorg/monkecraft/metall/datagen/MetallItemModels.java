@@ -20,6 +20,7 @@ public class MetallItemModels extends ItemModelProvider {
         simpleItem(MetallItems.CHOCOLATE);
         // simpleItem(MetallItems.PIEROGI);
         simpleItem(MetallItems.SLINGSHOT);
+        simpleItem(MetallItems.SLIME_BOOTS);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
