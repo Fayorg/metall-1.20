@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import me.fayorg.monkecraft.metall.datagen.DataGenerator;
 import me.fayorg.monkecraft.metall.events.FallEvent;
 import me.fayorg.monkecraft.metall.events.PlayerTickEvent;
+import me.fayorg.monkecraft.metall.item.MetallCreativeModTabs;
 import me.fayorg.monkecraft.metall.item.MetallItems;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,6 +30,7 @@ public class Metall {
         modEventBus.addListener(this::onBuildContent);
 
         MetallItems.ITEMS.register(modEventBus);
+        MetallCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(FallEvent::onFallEvent);
