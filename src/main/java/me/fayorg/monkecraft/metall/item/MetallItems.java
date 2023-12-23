@@ -13,6 +13,7 @@ public class MetallItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Metall.MODID);
 
-    public static final RegistryObject<Item> CHOCOLATE = ITEMS.register("chocolate", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100), 1.0f).build())));
-
+    public static final RegistryObject<Item> CHOCOLATE = ITEMS.register("chocolate", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 2, false, false), 1.0f).build())));
+    public static final RegistryObject<Item> PIEROGI = ITEMS.register("pierogi", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1.0F).build())));
+    public static final RegistryObject<Item> SLINGSHOT = ITEMS.register("slingshot", SlingshotItem::new);
 }
