@@ -5,7 +5,11 @@ import me.fayorg.monkecraft.metall.datagen.DataGenerator;
 import me.fayorg.monkecraft.metall.events.FallEvent;
 import me.fayorg.monkecraft.metall.events.PlayerTickEvent;
 import me.fayorg.monkecraft.metall.item.MetallItems;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +26,7 @@ public class Metall {
     public Metall() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(DataGenerator::gatherData);
+        modEventBus.addListener(this::onBuildContent);
 
         MetallItems.ITEMS.register(modEventBus);
 
@@ -38,5 +43,13 @@ public class Metall {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    public void onBuildContent(BuildCreativeModeTabContentsEvent event) {
+        ResourceKey<CreativeModeTab> tab = event.getTabKey();
+        if(tab.equals(CreativeModeTabs.COMBAT)) {
+            event.accept(MetallItems.SLINGSHOT);
+            event.accept(MetallItems.SLIME_BOOTS);
+        }
     }
 }
