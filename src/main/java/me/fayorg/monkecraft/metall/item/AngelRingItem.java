@@ -3,6 +3,7 @@ package me.fayorg.monkecraft.metall.item;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -18,17 +19,23 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurio;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class AngelRingItem extends Item {
+public class AngelRingItem extends Item implements ICurioItem {
+
+    private final int ENERGY_PER_TICK = 20;
+    private final int MAX_ENERGY = 3600000; // 20 * 60 * 60 * 2.5 * ENERGY_PER_TICK = 3600000 -> 2.5 hours of flight
     public AngelRingItem() {
         super(new Item.Properties().stacksTo(1));
     }
 
     @Override
     public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        EnergyItem energyItem = new EnergyItem(stack, 1000000);
+        EnergyItem energyItem = new EnergyItem(stack, MAX_ENERGY);
 
         return new ICapabilityProvider() {
             @Override
@@ -42,30 +49,40 @@ public class AngelRingItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        if(!(pEntity instanceof Player player)) return;
-        if(pLevel.isClientSide) return;
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        if(!(slotContext.entity() instanceof Player player)) return;
         if(player.getAbilities().instabuild) return;
-        IEnergyStorage energy = pStack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
-
+        if(player.level().isClientSide) return;
+        IEnergyStorage energy = stack.getCapability(ForgeCapabilities.ENERGY, null).orElse(null);
         if(energy.getEnergyStored() > 0) {
-            player.getAbilities().mayfly = true;
-            player.onUpdateAbilities();
-            energy.extractEnergy(1, false);
+            enableFlight(player);
+            if(player.getAbilities().flying) {
+                energy.extractEnergy(ENERGY_PER_TICK, false);
+            }
         } else {
-            player.getAbilities().flying = false;
-            player.getAbilities().mayfly = false;
-            player.onUpdateAbilities();
+            disableFlight(player);
         }
     }
 
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return true;
+    }
 
     @Override
-    public boolean onDroppedByPlayer(ItemStack item, Player player) {
-        player.getAbilities().flying = false;
-        player.getAbilities().mayfly = false;
+    public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        slotContext.entity().playSound(SoundEvents.ARMOR_EQUIP_ELYTRA, 1.0F, 1.0F);
+    }
+
+    private void enableFlight(Player player) {
+        player.getAbilities().mayfly = true;
         player.onUpdateAbilities();
-        return super.onDroppedByPlayer(item, player);
+    }
+
+    private void disableFlight(Player player) {
+        player.getAbilities().mayfly = false;
+        player.getAbilities().flying = false;
+        player.onUpdateAbilities();
     }
 
     @Override
@@ -90,6 +107,8 @@ public class AngelRingItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         IEnergyStorage energyStorage = pStack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
-        pTooltipComponents.add(Component.literal("Energy: " + energyStorage.getEnergyStored() + "/" + energyStorage.getMaxEnergyStored()));
+        pTooltipComponents.add(Component.literal("Energy: " + energyStorage.getEnergyStored() / 1000000 + " MFE /" + energyStorage.getMaxEnergyStored() / 1000000 + " MFE"));
+        pTooltipComponents.add(Component.literal("Flight time: " + (energyStorage.getEnergyStored() / ENERGY_PER_TICK / 20) + " seconds"));
+        pTooltipComponents.add(Component.literal("Energy Usage: " + ENERGY_PER_TICK + " FE/tick"));
     }
 }
