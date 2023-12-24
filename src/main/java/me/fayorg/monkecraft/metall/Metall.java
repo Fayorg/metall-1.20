@@ -1,6 +1,7 @@
 package me.fayorg.monkecraft.metall;
 
 import com.mojang.logging.LogUtils;
+import me.fayorg.monkecraft.metall.block.MetallBlocks;
 import me.fayorg.monkecraft.metall.datagen.DataGenerator;
 import me.fayorg.monkecraft.metall.events.FallEvent;
 import me.fayorg.monkecraft.metall.events.PlayerTickEvent;
@@ -36,8 +37,8 @@ public class Metall {
 
         MetallItems.ITEMS.register(modEventBus);
         MetallCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
+        MetallBlocks.BLOCKS.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(FallEvent::onFallEvent);
         MinecraftForge.EVENT_BUS.addListener(FallEvent::onPlayerFlyFallEvent);
         MinecraftForge.EVENT_BUS.addListener(PlayerTickEvent::onPlayerTick);
@@ -48,13 +49,8 @@ public class Metall {
 
     @SuppressWarnings("deprecation")
     private void enqueueIMC(final InterModEnqueueEvent event) {
+        // TODO: Find the correct way to do it in 1.20.1
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 
     public void onBuildContent(BuildCreativeModeTabContentsEvent event) {
