@@ -7,6 +7,8 @@ import net.minecraftforge.event.TickEvent;
 public class PlayerTickEvent {
 
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+
+        // Slingshot Item
         Player player = event.player;
         BounceHandler bounceHandler = BounceHandler.BOUNCING_ENTITIES.get(player);
         if (bounceHandler != null) {
