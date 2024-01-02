@@ -17,5 +17,6 @@ public class MetallRecipes extends RecipeProvider implements IConditionBuilder {
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MetallItems.SLIME_BOOTS.get()).pattern("S S").pattern("S S").define('S', Tags.Items.SLIMEBALLS).unlockedBy(getHasName(Items.SLIME_BALL), has(Tags.Items.SLIMEBALLS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MetallItems.SLINGSHOT.get()).pattern("SBS").pattern("L L").pattern(" L ").define('S', Tags.Items.STRING).define('B', Items.SLIME_BLOCK).define('L', Tags.Items.SLIMEBALLS).unlockedBy(getHasName(Items.SLIME_BALL), has(Tags.Items.SLIMEBALLS)).save(consumer);
     }
 }

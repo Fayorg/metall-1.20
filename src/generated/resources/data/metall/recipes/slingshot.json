@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:slime_block"
+    },
+    "L": {
+      "tag": "forge:slimeballs"
+    },
+    "S": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "SBS",
+    "L L",
+    " L "
+  ],
+  "result": {
+    "item": "metall:slingshot"
+  },
+  "show_notification": true
+}
