@@ -1,0 +1,81 @@
+name: Release Build
+env:
+  CI: true
+  BUILD_VERSION: ${{ github.event.release.tag_name }}
+  CHANGELOG: ${{ github.event.release.body }}
+  PUBLISH: true
+
+# Run when release is created on GitHub
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Clean
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean
+
+      - name: Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: release-build
+          path: build/libs/*.jar
+
+      - name: Upload to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: build/libs/*.jar
+
+      - name: Truncate Build Notes
+        uses: 2428392/gh-truncate-string-action@v1.2.0
+        id: truncatedChangelog
+        with:
+          stringToTruncate: ${{ github.event.release.body }}
+          maxLength: 1000
+
+  updateReleaseBranch:
+    needs: [release]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get Minecraft Version
+        uses: madhead/read-java-properties@latest
+        id: mc_version
+        with:
+          file: gradle.properties
+          property: minecraft_version
+
+      - uses: actions/checkout@v3
+        with:
+          ref: release/${{ steps.mc_version.outputs.value }}
+          fetch-depth: 0
+
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git merge ${{ github.event.release.tag_name }}
+          git push
