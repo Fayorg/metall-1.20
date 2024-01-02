@@ -33,7 +33,7 @@ public class Metall {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(DataGenerator::gatherData);
         modEventBus.addListener(this::onBuildContent);
-        modEventBus.addListener(this::enqueueIMC);
+//        modEventBus.addListener(this::enqueueIMC);
 
         MetallItems.ITEMS.register(modEventBus);
         MetallCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
@@ -48,10 +48,10 @@ public class Metall {
     }
 
     @SuppressWarnings("deprecation")
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-        // TODO: Find the correct way to do it in 1.20.1
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-    }
+//    private void enqueueIMC(final InterModEnqueueEvent event) {
+//        // TODO: Find the correct way to do it in 1.20.1
+//        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
+//    }
 
     public void onBuildContent(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
