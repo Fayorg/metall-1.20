@@ -7,8 +7,8 @@ import net.minecraft.world.item.Rarity;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class InvisibleGoogleItem extends Item implements ICurioItem {
-    public InvisibleGoogleItem() {
+public class InvisibleGoggleItem extends Item implements ICurioItem {
+    public InvisibleGoggleItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
     }
 

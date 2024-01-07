@@ -2,7 +2,7 @@ package me.fayorg.monkecraft.metall.events;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import me.fayorg.monkecraft.metall.item.InvisibleGoogleItem;
+import me.fayorg.monkecraft.metall.item.InvisibleGoggleItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.RenderType;
@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -45,7 +44,7 @@ public class RenderPlayer {
 
     private static ItemStack getInvisibleGoogleStack(Player player)
     {
-        AtomicReference<ItemStack> google = new AtomicReference<>(ItemStack.EMPTY);
+        AtomicReference<ItemStack> goggle = new AtomicReference<>(ItemStack.EMPTY);
         LazyOptional<ICuriosItemHandler> optional = CuriosApi.getCuriosInventory(player);
         optional.ifPresent(itemHandler ->
         {
@@ -53,13 +52,13 @@ public class RenderPlayer {
             stacksOptional.ifPresent(stacksHandler ->
             {
                 ItemStack stack = stacksHandler.getStacks().getStackInSlot(0);
-                if(stack.getItem() instanceof InvisibleGoogleItem)
+                if(stack.getItem() instanceof InvisibleGoggleItem)
                 {
-                    google.set(stack);
+                    goggle.set(stack);
                 }
             });
         });
-        return google.get();
+        return goggle.get();
     }
 
 }

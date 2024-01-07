@@ -21,7 +21,7 @@ public class MetallItemModels extends ItemModelProvider {
         // simpleItem(MetallItems.PIEROGI);
         simpleItem(MetallItems.SLINGSHOT);
         simpleItem(MetallItems.SLIME_BOOTS);
-        simpleItem(MetallItems.INVISIBLE_GOOGLES);
+        simpleItem(MetallItems.INVISIBLE_GOGGLES);
         // withExistingParent(MetallItems.FERTILIZER_BLOCK_ITEM.getId().getPath(), modLoc("block/fertilizer_block"));
     }
 
