@@ -1,0 +1,45 @@
+name: Nightly Build
+env:
+  CI: true
+  BUILD_NUMBER: ${{ github.run_number }}
+  NIGHTLY: true
+
+# Run on all develop pushes
+on:
+  push:
+    branches:
+      - 'dev/*'
+
+# Cancel if a new push is sent
+# https://stackoverflow.com/a/70972844
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: nightly-build
+          path: |
+            build/libs/*.jar
+            !build/libs/*-partial.jar

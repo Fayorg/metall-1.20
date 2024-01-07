@@ -3,7 +3,6 @@ env:
   CI: true
   BUILD_VERSION: ${{ github.event.release.tag_name }}
   CHANGELOG: ${{ github.event.release.body }}
-  PUBLISH: true
 
 # Run when release is created on GitHub
 on:
@@ -21,7 +20,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'corretto'
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
