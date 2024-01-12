@@ -14,7 +14,7 @@ public class MetallCreativeModTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, "metall");
 
-    public static final RegistryObject<CreativeModeTab> METALL_TAB = CREATIVE_MODE_TABS.register("metall", () -> CreativeModeTab.builder().icon(() -> new ItemStack(MetallItems.SLINGSHOT.get())).title(Component.translatable("itemGroup.metall")).displayItems((pParameters, pOutput) -> {
+    public static final RegistryObject<CreativeModeTab> METALL_TAB = CREATIVE_MODE_TABS.register("metall", () -> CreativeModeTab.builder().icon(() -> new ItemStack(MetallItems.PIEROGI.get())).title(Component.translatable("itemGroup.metall")).displayItems((pParameters, pOutput) -> {
         // Tools
         pOutput.accept(MetallItems.SLINGSHOT.get());
         pOutput.accept(setItemStackMaxCharge(MetallItems.INVISIBLE_GOGGLES.get()));

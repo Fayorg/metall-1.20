@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "minecraft:bone_meal"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "pattern": [
+    "BDB",
+    "DBD",
+    "BDB"
+  ],
+  "result": {
+    "count": 4,
+    "item": "metall:fertilizer_block"
+  },
+  "show_notification": true
+}
