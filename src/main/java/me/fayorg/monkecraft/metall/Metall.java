@@ -9,6 +9,7 @@ import me.fayorg.monkecraft.metall.event.RenderPlayer;
 import me.fayorg.monkecraft.metall.item.MetallCreativeModTabs;
 import me.fayorg.monkecraft.metall.item.MetallItems;
 import me.fayorg.monkecraft.metall.plugin.curios.InvisibleGoggleRenderer;
+import me.fayorg.monkecraft.metall.recipe.MetallRecipes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -40,6 +41,8 @@ public class Metall {
         MetallItems.ITEMS.register(modEventBus);
         MetallCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
         MetallBlocks.BLOCKS.register(modEventBus);
+
+        MetallRecipes.RECIPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(FallEvent::onFallEvent);
         MinecraftForge.EVENT_BUS.addListener(FallEvent::onPlayerFlyFallEvent);
