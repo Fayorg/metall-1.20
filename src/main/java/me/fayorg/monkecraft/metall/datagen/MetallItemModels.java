@@ -18,7 +18,7 @@ public class MetallItemModels extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(MetallItems.CHOCOLATE);
-        // simpleItem(MetallItems.PIEROGI);
+        simpleItem(MetallItems.PIEROGI);
         simpleItem(MetallItems.SLINGSHOT);
         simpleItem(MetallItems.SLIME_BOOTS);
         simpleItem(MetallItems.INVISIBLE_GOGGLES);
