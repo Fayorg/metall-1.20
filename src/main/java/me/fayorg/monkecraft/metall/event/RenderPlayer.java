@@ -2,6 +2,7 @@ package me.fayorg.monkecraft.metall.event;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import me.fayorg.monkecraft.metall.api.EnergyUtil;
 import me.fayorg.monkecraft.metall.item.InvisibleGoggleItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
@@ -30,15 +31,14 @@ public class RenderPlayer {
         Player player = event.getEntity();
         ItemStack google = getInvisibleGoogleStack(Minecraft.getInstance().player);
         if(!google.isEmpty()) {
+            if(!EnergyUtil.hasEnergy(google, 100)) return;
             VoxelShape shape = Shapes.create(player.getBoundingBox().inflate(0.1D));
             Color color = new Color(28, 152, 26);
             RenderSystem.lineWidth(Math.max(2.5F, (float) Minecraft.getInstance().getWindow().getWidth() / 1920.0F * 2.5F));
             VertexConsumer builder = event.getMultiBufferSource().getBuffer(RenderType.lines());
             LevelRenderer.renderLineBox(event.getPoseStack(), builder, shape.bounds().move(-player.getX(), -player.getY(), -player.getZ()), (float) color.getRed() / 255f, (float) color.getGreen() / 255f,(float) color.getBlue() / 255f, 1.0F);
-            google.getCapability(ForgeCapabilities.ENERGY).ifPresent(energy ->
-            {
-                energy.extractEnergy(1, false);
-            });
+            // Extracting only 9 per tick because by default it extracts 1 per tick
+            EnergyUtil.extractEnergy(google, 9, false);
         }
     }
 
