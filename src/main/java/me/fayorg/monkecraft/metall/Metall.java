@@ -31,7 +31,6 @@ public class Metall {
     public Metall() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(DataGenerator::gatherData);
-        modEventBus.addListener(this::onBuildContent);
         modEventBus.addListener(this::clientSetup);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
@@ -55,13 +54,5 @@ public class Metall {
 
     public void clientSetup(final FMLClientSetupEvent event) {
         CuriosRendererRegistry.register(MetallItems.INVISIBLE_GOGGLES.get(), InvisibleGoggleRenderer::new);
-    }
-
-    public void onBuildContent(BuildCreativeModeTabContentsEvent event) {
-        ResourceKey<CreativeModeTab> tab = event.getTabKey();
-        if(tab.equals(CreativeModeTabs.COMBAT)) {
-            event.accept(MetallItems.SLINGSHOT);
-            event.accept(MetallItems.SLIME_BOOTS);
-        }
     }
 }
