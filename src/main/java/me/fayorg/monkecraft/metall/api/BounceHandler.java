@@ -1,4 +1,4 @@
-package me.fayorg.monkecraft.metall.utils;
+package me.fayorg.monkecraft.metall.api;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

@@ -1,7 +1,7 @@
-package me.fayorg.monkecraft.metall.events;
+package me.fayorg.monkecraft.metall.event;
 
 import me.fayorg.monkecraft.metall.item.SlimeArmor;
-import me.fayorg.monkecraft.metall.utils.BounceHandler;
+import me.fayorg.monkecraft.metall.api.BounceHandler;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;

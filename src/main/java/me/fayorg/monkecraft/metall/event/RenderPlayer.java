@@ -1,4 +1,4 @@
-package me.fayorg.monkecraft.metall.events;
+package me.fayorg.monkecraft.metall.event;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;

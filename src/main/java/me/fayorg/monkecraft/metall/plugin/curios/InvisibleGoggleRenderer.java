@@ -1,4 +1,4 @@
-package me.fayorg.monkecraft.metall.plugins.curios;
+package me.fayorg.monkecraft.metall.plugin.curios;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import me.fayorg.monkecraft.metall.client.ClientHandler;

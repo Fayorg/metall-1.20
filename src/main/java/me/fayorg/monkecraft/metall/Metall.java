@@ -1,15 +1,14 @@
 package me.fayorg.monkecraft.metall;
 
-import com.mojang.logging.LogUtils;
 import me.fayorg.monkecraft.metall.block.MetallBlocks;
 import me.fayorg.monkecraft.metall.client.ClientHandler;
 import me.fayorg.monkecraft.metall.datagen.DataGenerator;
-import me.fayorg.monkecraft.metall.events.FallEvent;
-import me.fayorg.monkecraft.metall.events.PlayerTickEvent;
-import me.fayorg.monkecraft.metall.events.RenderPlayer;
+import me.fayorg.monkecraft.metall.event.FallEvent;
+import me.fayorg.monkecraft.metall.event.PlayerTickEvent;
+import me.fayorg.monkecraft.metall.event.RenderPlayer;
 import me.fayorg.monkecraft.metall.item.MetallCreativeModTabs;
 import me.fayorg.monkecraft.metall.item.MetallItems;
-import me.fayorg.monkecraft.metall.plugins.curios.InvisibleGoggleRenderer;
+import me.fayorg.monkecraft.metall.plugin.curios.InvisibleGoggleRenderer;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -21,7 +20,6 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file

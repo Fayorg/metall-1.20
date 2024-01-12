@@ -1,4 +1,4 @@
-package me.fayorg.monkecraft.metall.plugins;
+package me.fayorg.monkecraft.metall.plugin;
 
 import me.fayorg.monkecraft.metall.Metall;
 import mezz.jei.api.IModPlugin;
