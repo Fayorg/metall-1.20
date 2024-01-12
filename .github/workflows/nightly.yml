@@ -50,7 +50,6 @@ jobs:
           webhook-url: ${{ secrets.NIGHTLY_DISCORD_WEBHOOK }}
           embed-title: New Nightly Build
           embed-description: A new nightly build of Metall has been built from the following commit. If you play with this, please remember to report issues! ```${{ github.event.head_commit.message }}```
-          avatar-url: https://raw.githubusercontent.com/Team-EnderIO/EnderIO/dev/1.20.1/doc/img/enderface.png
           username: Metall Nightbuild
           embed-footer-text: Build number ${{ github.run_number }}
           embed-url: https://nightly.link/${{ github.repository }}/actions/runs/${{ github.run_id }}/nightly-build.zip # NOTE: Must match "name" of the artifact as set above.
@@ -63,7 +62,6 @@ jobs:
           webhook-url: ${{ secrets.NIGHTLY_DISCORD_WEBHOOK }}
           embed-title: Nightly Build Failed
           embed-description: The nightly build failed to compile at this commit. ```${{ github.event.head_commit.message }}```
-          avatar-url: https://raw.githubusercontent.com/Team-EnderIO/EnderIO/dev/1.20.1/doc/img/gray-enderface.png
           username: Metall Nightbuild
           embed-footer-text: Build number ${{ github.run_number }}
           embed-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
