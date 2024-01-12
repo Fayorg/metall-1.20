@@ -25,6 +25,7 @@ public class MetallCreativeModTabs {
         // Foods
         pOutput.accept(MetallItems.CHOCOLATE.get());
         pOutput.accept(MetallItems.DOUGH.get());
+        pOutput.accept(MetallItems.FLOUR.get());
 
         ItemStack pierogi = new ItemStack(MetallItems.PIEROGI.get());
         PierogiItem.setFoodProperties(pierogi, 6, 1.0F, false);

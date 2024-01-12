@@ -22,6 +22,7 @@ public class MetallItems {
     public static final RegistryObject<Item> SLIME_BOOTS = ITEMS.register("slime_boots", () -> new SlimeArmor(ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> INVISIBLE_GOGGLES = ITEMS.register("invisible_goggle", InvisibleGoggleItem::new);
     public static final RegistryObject<Item> DOUGH = ITEMS.register("dough", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> FLOUR = ITEMS.register("flour", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> FERTILIZER_BLOCK_ITEM = ITEMS.register("fertilizer_block", () -> new BlockItem(MetallBlocks.FERTILIZER_BLOCK.get(), new Item.Properties()));
 }
