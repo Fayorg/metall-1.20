@@ -9,4 +9,8 @@ public class NBTKey {
     public static final String ENERGY_MAX_RECEIVE = "MaxEnergyUse";
     public static final String ENERGY_MAX_EXTRACT = "MaxEnergyUse";
 
+    public static final String NUTRITION = "Nutrition";
+    public static final String SATURATION = "Saturation";
+    public static final String FAST_EATING = "FastEating";
+
 }
