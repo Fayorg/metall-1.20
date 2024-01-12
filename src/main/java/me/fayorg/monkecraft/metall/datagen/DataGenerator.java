@@ -13,7 +13,7 @@ public class DataGenerator {
 
         gen.addProvider(event.includeClient(), new MetallItemModels(event.getGenerator().getPackOutput(), Metall.MODID, efh));
         gen.addProvider(event.includeServer(), new MetallRecipes(event.getGenerator().getPackOutput()));
-        gen.addProvider(event.includeClient(), new MetallBlockStates(event.getGenerator().getPackOutput(), efh));
+        gen.addProvider(event.includeClient(), new MetallBlockStateProvider(event.getGenerator().getPackOutput(), efh));
 
     }
 

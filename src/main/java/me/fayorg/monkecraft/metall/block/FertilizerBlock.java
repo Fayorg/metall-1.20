@@ -8,6 +8,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
@@ -18,7 +19,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class FertilizerBlock extends Block {
     public FertilizerBlock() {
-        super(BlockBehaviour.Properties.copy(Blocks.FARMLAND));
+        super(BlockBehaviour.Properties.copy(Blocks.FARMLAND).noOcclusion());
     }
 
     @Override
@@ -36,6 +37,11 @@ public class FertilizerBlock extends Block {
                 // pLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, pPos.getX() + .5, pPos.getY() + 1.5, pPos.getZ() + .5, 10, 0, 0, 0, 0.15);
             }
         }
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 
     @Override

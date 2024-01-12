@@ -16,6 +16,7 @@ public class MetallCreativeModTabs {
         pOutput.accept(MetallItems.CHOCOLATE.get());
         pOutput.accept(MetallItems.PIEROGI.get());
         pOutput.accept(MetallItems.SLIME_BOOTS.get());
+        pOutput.accept(MetallItems.INVISIBLE_GOGGLES.get());
 
         pOutput.accept(MetallItems.FERTILIZER_BLOCK_ITEM.get());
     }).build());
